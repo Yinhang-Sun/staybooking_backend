@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: yinhang_sun
+Build-Jdk: Oracle OpenJDK version 19.0.1
+Implementation-Title: staybooking
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.laioffer
+Main-Class: ${start-class}
+
