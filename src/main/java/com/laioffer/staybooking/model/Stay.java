@@ -143,8 +143,4 @@ public class Stay implements Serializable {
             return new Stay(this);
         }
     }
-
-
-
-
 }
