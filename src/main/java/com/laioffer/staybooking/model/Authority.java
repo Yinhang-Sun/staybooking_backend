@@ -16,7 +16,7 @@ public class Authority implements Serializable {
 
     public Authority() {}
 
-    public Authority(String username, String authority) {
+    public Authority(String username, String Authority) {
         this.username = username;
         this.authority = authority;
     }
@@ -34,9 +34,11 @@ public class Authority implements Serializable {
         return authority;
     }
 
-    public Authority setAuthority (String authority) {
+    public Authority setAuthority(String authority) {
         this.authority = authority;
         return this;
     }
+
 }
+
 
