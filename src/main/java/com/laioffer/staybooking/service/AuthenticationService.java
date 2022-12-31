@@ -1,6 +1,5 @@
 package com.laioffer.staybooking.service;
 
-
 import com.laioffer.staybooking.exception.UserNotExistException;
 import com.laioffer.staybooking.model.Token;
 import com.laioffer.staybooking.model.User;
@@ -33,14 +32,9 @@ public class AuthenticationService {
             throw new UserNotExistException("User Doesn't Exist");
         }
 
-        if (auth == null || !auth.isAuthenticated() || !auth.getAuthorities().contains(new SimpleGrantedAuthority(role.name()))) {
+        if(auth == null || !auth.isAuthenticated() || auth.getAuthorities().contains(new SimpleGrantedAuthority(role.name()))) {
             throw new UserNotExistException("User Doesn't Exist");
         }
         return new Token(jwtUtil.generateToken(user.getUsername()));
     }
-
-
-
-
-
 }
