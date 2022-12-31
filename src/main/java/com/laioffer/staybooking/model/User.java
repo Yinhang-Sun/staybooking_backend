@@ -1,6 +1,7 @@
 package com.laioffer.staybooking.model;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.persistence.Entity;
@@ -15,19 +16,17 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String username;
-
     @JsonIgnore
     private String password;
-
     @JsonIgnore
     private boolean enabled;
 
-    public User() { }
+    public User() {}
 
     private User(Builder builder) {
         this.username = builder.username;
         this.password = builder.password;
-        this.enabled = builder.enable;
+        this.enabled = builder.enabled;
     }
 
     public String getUsername() {
@@ -58,15 +57,14 @@ public class User implements Serializable {
     }
 
     public static class Builder {
-
         @JsonProperty("username")
         private String username;
 
         @JsonProperty("password")
         private String password;
 
-        @JsonProperty("enable")
-        private boolean enable;
+        @JsonProperty("enabled")
+        private boolean enabled;
 
         public Builder setUsername(String username) {
             this.username = username;
@@ -78,8 +76,8 @@ public class User implements Serializable {
             return this;
         }
 
-        public Builder setEnable(boolean enable) {
-            this.enable = enable;
+        public Builder setEnabled(boolean enabled) {
+            this.enabled = enabled;
             return this;
         }
 
@@ -87,8 +85,4 @@ public class User implements Serializable {
             return new User(this);
         }
     }
-
-    StringBuilder sb = new StringBuilder();
-
-
 }
