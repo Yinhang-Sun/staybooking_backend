@@ -3,11 +3,9 @@ package com.laioffer.staybooking.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
 @Entity
 @Table(name = "stay_reserved_date")
 public class StayReservedDate implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
@@ -31,6 +29,4 @@ public class StayReservedDate implements Serializable {
     public Stay getStay() {
         return stay;
     }
-
-
 }
