@@ -17,5 +17,4 @@ public interface StayRepository extends JpaRepository<Stay, Long> {
     List<Stay> findByIdInAndGuestNumberGreaterThanEqual(List<Long> ids, int guestNumber);
 
 
-
 }
