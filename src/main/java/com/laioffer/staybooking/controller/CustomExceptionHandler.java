@@ -31,7 +31,7 @@ public class CustomExceptionHandler {
     }
 
     @ExceptionHandler(InvalidSearchDateException.class)
-    public final ResponseEntity<String> handleInvalidSearchDateExceptions(Exception ex, WebRequest request) {
+    public final ResponseEntity<String> handleInvalidSearchDateException(Exception ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 

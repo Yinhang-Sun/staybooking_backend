@@ -5,4 +5,3 @@ public class InvalidSearchDateException extends RuntimeException {
         super(message);
     }
 }
-
