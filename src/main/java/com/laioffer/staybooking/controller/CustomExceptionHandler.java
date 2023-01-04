@@ -11,12 +11,12 @@ import org.springframework.web.context.request.WebRequest;
 public class CustomExceptionHandler {
 
     @ExceptionHandler(UserAlreadyExistException.class)
-    public final ResponseEntity<String> handleUserAlreadyExistExceptions(Exception ex, WebRequest request) {
+    public final ResponseEntity<String> handleUserAlreadyExistException(Exception ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(UserNotExistException.class)
-    public final ResponseEntity<String> handleUserNotExistExceptions(Exception ex, WebRequest request) {
+    public final ResponseEntity<String> handleUserNotExistException(Exception ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 

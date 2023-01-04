@@ -30,7 +30,7 @@ public class RegisterService {
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public void add(User user, UserRole role) throws UserAlreadyExistException {
-        if (userRepository.existsById(user.getUsername())) {
+        if(userRepository.existsById(user.getUsername())) {
             throw new UserAlreadyExistException("User already exists");
         }
 

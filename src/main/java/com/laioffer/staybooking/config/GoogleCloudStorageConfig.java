@@ -18,4 +18,3 @@ public class GoogleCloudStorageConfig {
         return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
     }
 }
-
