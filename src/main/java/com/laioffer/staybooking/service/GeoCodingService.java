@@ -25,7 +25,7 @@ public class GeoCodingService {
     public Location getLatLng(Long id, String address) throws GeoCodingException {
         try {
             GeocodingResult result = GeocodingApi.geocode(context, address).await()[0];
-            if (result.partialMatch) {
+            if(result.partialMatch) {
                 throw new InvalidStayAddressException("Failed to find stay address");
             }
             return new Location(id, new GeoPoint(result.geometry.location.lat, result.geometry.location.lng));
@@ -35,4 +35,3 @@ public class GeoCodingService {
         }
     }
 }
-
