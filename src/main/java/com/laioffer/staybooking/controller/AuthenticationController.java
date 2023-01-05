@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthenticationController {
-
     private AuthenticationService authenticationService;
 
     @Autowired
@@ -28,5 +27,4 @@ public class AuthenticationController {
     public Token authenticateHost(@RequestBody User user) {
         return authenticationService.authenticate(user, UserRole.ROLE_HOST);
     }
-
 }

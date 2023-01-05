@@ -11,11 +11,10 @@ import java.util.HashMap;
 
 @Component
 public class JwtUtil {
-
     @Value("${jwt.secret}")
     private String secret;
 
-    //subject == username
+    // subject == username
     public String generateToken(String subject) {
         return Jwts.builder()
                 .setClaims(new HashMap<>())
@@ -41,7 +40,4 @@ public class JwtUtil {
     public Boolean validateToken(String token) {
         return extractExpiration(token).after(new Date());
     }
-
-
-
 }

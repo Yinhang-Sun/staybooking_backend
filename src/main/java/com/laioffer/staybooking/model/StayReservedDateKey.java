@@ -39,8 +39,8 @@ public class StayReservedDateKey implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(this == o) return true;
+        if(o == null || getClass() != o.getClass()) return false;
         StayReservedDateKey that = (StayReservedDateKey) o;
         return stay_id.equals(that.stay_id) && date.equals(that.date);
     }
@@ -49,5 +49,4 @@ public class StayReservedDateKey implements Serializable {
     public int hashCode() {
         return Objects.hash(stay_id, date);
     }
-
 }

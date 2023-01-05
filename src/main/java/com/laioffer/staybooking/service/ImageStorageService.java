@@ -37,10 +37,9 @@ public class ImageStorageService {
                             .setAcl(new ArrayList<>(Arrays.asList(Acl.of(Acl.User.ofAllUsers(), Acl.Role.READER))))
                             .build(),
                     file.getInputStream());
-        } catch (IOException exception) {
+        } catch(IOException exception) {
             throw new GCSUploadException("Failed to upload file to GCS");
         }
-
         return blobInfo.getMediaLink();
     }
 }
