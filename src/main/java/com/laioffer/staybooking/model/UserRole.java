@@ -1,6 +1,6 @@
 package com.laioffer.staybooking.model;
 
-// There are two roles: HOST and GUEST
+// Two roles: HOST AND GUEST
 public enum UserRole {
     ROLE_HOST, ROLE_GUEST
 }
