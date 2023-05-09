@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
@@ -69,18 +68,16 @@ public class StayService {
         locationRepository.save(location);
     }
 
-
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public void delete(Long stayId, String username) throws StayNotExistException, StayDeleteException {
         Stay stay = stayRepository.findByIdAndHost(stayId, new User.Builder().setUsername(username).build());
-        if (stay == null) {
+        if(stay == null) {
             throw new StayNotExistException("Stay doesn't exist");
         }
         List<Reservation> reservations = reservationRepository.findByStayAndCheckoutDateAfter(stay, LocalDate.now());
-        if (reservations != null && reservations.size() > 0) {
+        if(reservations != null && reservations.size() > 0) {
             throw new StayDeleteException("Cannot delete stay with active reservation");
         }
-
 
         List<StayReservedDate> stayReservedDates = stayReservationDateRepository.findByStay(stay);
 

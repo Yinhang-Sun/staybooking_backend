@@ -2,6 +2,7 @@ package com.laioffer.staybooking.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -110,7 +111,5 @@ public class Reservation implements Serializable {
         public Reservation build() {
             return new Reservation(this);
         }
-
     }
-
 }

@@ -23,7 +23,7 @@ public class CustomLocationRepositoryImpl implements CustomLocationRepository {
 
     @Override
     public List<Long> searchByDistance(double lat, double lon, String distance) {
-        if (distance == null || distance.isEmpty()) {
+        if(distance == null || distance.isEmpty()) {
             distance = DEFAULT_DISTANCE;
         }
         NativeSearchQueryBuilder queryBuilder = new NativeSearchQueryBuilder();
@@ -31,10 +31,9 @@ public class CustomLocationRepositoryImpl implements CustomLocationRepository {
 
         SearchHits<Location> searchResult = elasticsearchOperations.search(queryBuilder.build(), Location.class);
         List<Long> locationIDs = new ArrayList<>();
-        for (SearchHit<Location> hit : searchResult.getSearchHits()) {
+        for(SearchHit<Location> hit : searchResult.getSearchHits()) {
             locationIDs.add(hit.getContent().getId());
         }
         return locationIDs;
     }
 }
-
