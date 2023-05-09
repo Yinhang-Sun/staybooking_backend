@@ -30,6 +30,7 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
                 .withBasicAuth(elasticsearchUsername, elasticsearchPassword)
                 .build();
 
-        return RestClients.create(clientConfiguration).rest();
+        return
+                RestClients.create(clientConfiguration).rest();
     }
 }

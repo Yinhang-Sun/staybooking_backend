@@ -28,13 +28,12 @@ public class SearchController {
             @RequestParam(name = "checkout_date") String end,
             @RequestParam(name = "lat") double lat,
             @RequestParam(name = "lon") double lon,
-            @RequestParam(name = "distance", required=false) String distance) {
+            @RequestParam(name = "distance", required = false) String distance) {
         LocalDate checkinDate = LocalDate.parse(start, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate checkoutDate = LocalDate.parse(end, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        if (checkinDate.equals(checkoutDate) || checkinDate.isAfter(checkoutDate) || checkinDate.isBefore(LocalDate.now())) {
+        if(checkinDate.equals(checkoutDate) || checkinDate.isAfter(checkoutDate) || checkinDate.isBefore(LocalDate.now())) {
             throw new InvalidSearchDateException("Invalid date for reservation");
         }
         return searchService.search(guestNumber, checkinDate, checkoutDate, lat, lon, distance);
     }
 }
-
