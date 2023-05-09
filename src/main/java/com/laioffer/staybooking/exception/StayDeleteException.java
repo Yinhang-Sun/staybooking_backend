@@ -5,4 +5,3 @@ public class StayDeleteException extends RuntimeException {
         super(message);
     }
 }
-

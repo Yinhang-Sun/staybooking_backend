@@ -8,4 +8,3 @@ import org.springframework.stereotype.Repository;
 public interface LocationRepository extends ElasticsearchRepository<Location, Long>, CustomLocationRepository {
 
 }
-
