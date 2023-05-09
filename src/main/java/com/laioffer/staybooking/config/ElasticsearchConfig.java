@@ -8,7 +8,6 @@ import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 
-// test login commit and push
 @Configuration
 public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
 
@@ -30,6 +29,7 @@ public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
                 .withBasicAuth(elasticsearchUsername, elasticsearchPassword)
                 .build();
 
-        return RestClients.create(clientConfiguration).rest();
+        return
+                RestClients.create(clientConfiguration).rest();
     }
 }

@@ -7,7 +7,6 @@ import com.laioffer.staybooking.repository.ReservationRepository;
 import com.laioffer.staybooking.repository.StayReservationDateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,12 +38,11 @@ public class ReservationService {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public void add(Reservation reservation) throws ReservationCollisionException {
         Set<Long> stayIds = stayReservationDateRepository.findByIdInAndDateBetween(Arrays.asList(reservation.getStay().getId()), reservation.getCheckinDate(), reservation.getCheckoutDate().minusDays(1));
-        if (!stayIds.isEmpty()) {
+        if(!stayIds.isEmpty()) {
             throw new ReservationCollisionException("Duplicate reservation");
         }
-
         List<StayReservedDate> reservedDates = new ArrayList<>();
-        for (LocalDate date = reservation.getCheckinDate(); date.isBefore(reservation.getCheckoutDate()); date = date.plusDays(1)) {
+        for(LocalDate date = reservation.getCheckinDate(); date.isBefore(reservation.getCheckoutDate()); date = date.plusDays(1)) {
             reservedDates.add(new StayReservedDate(new StayReservedDateKey(reservation.getStay().getId(), date), reservation.getStay()));
         }
         stayReservationDateRepository.saveAll(reservedDates);
@@ -54,14 +52,12 @@ public class ReservationService {
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public void delete(Long reservationId, String username) {
         Reservation reservation = reservationRepository.findByIdAndGuest(reservationId, new User.Builder().setUsername(username).build());
-        if (reservation == null) {
+        if(reservation == null) {
             throw new ReservationNotFoundException("Reservation is not available");
         }
-        for (LocalDate date = reservation.getCheckinDate(); date.isBefore(reservation.getCheckoutDate()); date = date.plusDays(1)) {
+        for(LocalDate date = reservation.getCheckinDate(); date.isBefore(reservation.getCheckoutDate()); date = date.plusDays(1)) {
             stayReservationDateRepository.deleteById(new StayReservedDateKey(reservation.getStay().getId(), date));
         }
         reservationRepository.deleteById(reservationId);
     }
-
 }
-

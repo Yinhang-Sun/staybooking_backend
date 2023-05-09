@@ -21,13 +21,11 @@ public class StayController {
     @Autowired
     public StayController(StayService stayService, ReservationService reservationService) {
         this.stayService = stayService;
-
         this.reservationService = reservationService;
-
     }
 
     @GetMapping(value = "/stays")
-    public List<Stay> listStays(Principal principal) {
+    public List<Stay> listStay(Principal principal) {
         return stayService.listByUser(principal.getName());
     }
 
@@ -64,8 +62,4 @@ public class StayController {
     public List<Reservation> listReservations(@PathVariable Long stayId) {
         return reservationService.listByStay(stayId);
     }
-
-
-
-
 }
