@@ -16,4 +16,3 @@ public class GoogleGeoCodingConfig {
         return new GeoApiContext.Builder().apiKey(apiKey).build();
     }
 }
-

@@ -5,4 +5,3 @@ public class ReservationCollisionException extends RuntimeException {
         super(message);
     }
 }
-

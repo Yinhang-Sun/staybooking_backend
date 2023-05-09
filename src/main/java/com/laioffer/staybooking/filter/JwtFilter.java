@@ -33,30 +33,26 @@ public class JwtFilter extends OncePerRequestFilter {
         this.authorityRepository = authorityRepository;
         this.jwtUtil = jwtUtil;
     }
-
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         final String authorizationHeader = httpServletRequest.getHeader(HEADER);
 
         String jwt = null;
-        if (authorizationHeader != null && authorizationHeader.startsWith(PREFIX)) {
+        if(authorizationHeader != null && authorizationHeader.startsWith(PREFIX)) {
             jwt = authorizationHeader.substring(PREFIX.length());
         }
 
-        if (jwt != null && jwtUtil.validateToken(jwt) && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if(jwt != null && jwtUtil.validateToken(jwt) && SecurityContextHolder.getContext().getAuthentication() == null) {
             String username = jwtUtil.extractUsername(jwt);
             Authority authority = authorityRepository.findById(username).orElse(null);
-            if (authority != null) {
-                List<GrantedAuthority> grantedAuthorities = Arrays.asList(new GrantedAuthority[]{new SimpleGrantedAuthority(authority.getAuthority())});
+            if(authority != null) {
+                List<GrantedAuthority> grantedAuthories = Arrays.asList(new GrantedAuthority[] {new SimpleGrantedAuthority(authority.getAuthority())});
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        username, null, grantedAuthorities);
+                        username, null, grantedAuthories);
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
-
-
-
 }
