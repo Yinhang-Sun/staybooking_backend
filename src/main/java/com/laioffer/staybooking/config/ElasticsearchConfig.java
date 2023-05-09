@@ -8,7 +8,7 @@ import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 
-// TEST CHANGE 22
+// TEST CHANGE 222
 @Configuration
 public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
 
