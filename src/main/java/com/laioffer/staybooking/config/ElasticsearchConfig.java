@@ -8,7 +8,7 @@ import org.springframework.data.elasticsearch.client.ClientConfiguration;
 import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 
-// test user_registration commit and push
+// test user_registration commit and push 2023
 @Configuration
 public class ElasticsearchConfig extends AbstractElasticsearchConfiguration {
 
