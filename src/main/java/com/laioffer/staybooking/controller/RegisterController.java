@@ -27,4 +27,5 @@ public class RegisterController {
         registerService.add(user, UserRole.ROLE_HOST);
     }
 
+
 }
