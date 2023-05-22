@@ -1,5 +1,6 @@
 package com.laioffer.staybooking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -15,7 +16,11 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String username;
+
+    @JsonIgnore
     private String password;
+
+    @JsonIgnore
     private boolean enabled;
 
     public User() {}
