@@ -27,4 +27,5 @@ public class AuthenticationController {
     public Token authenticateHost(@RequestBody User user) {
         return authenticationService.authenticate(user, UserRole.ROLE_HOST);
     }
+
 }
