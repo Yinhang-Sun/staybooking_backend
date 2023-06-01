@@ -14,7 +14,8 @@ public class GoogleCloudStorageConfig {
 
     @Bean
     public Storage storage() throws IOException {
-        Credentials credentials = ServiceAccountCredentials.fromStream(getClass().getClassLoader().getResourceAsStream("credentials.json"));
+        Credentials credentials =
+                ServiceAccountCredentials.fromStream(getClass().getClassLoader().getResourceAsStream("credentials.json"));
         return StorageOptions.newBuilder().setCredentials(credentials).build().getService();
     }
 }
