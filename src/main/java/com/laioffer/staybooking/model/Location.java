@@ -1,17 +1,18 @@
 package com.laioffer.staybooking.model;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import org.springframework.data.elasticsearch.annotations.GeoPointField;
 import org.springframework.data.elasticsearch.core.geo.GeoPoint;
 
+import javax.persistence.Id;
 import java.io.Serializable;
 
 @Document(indexName = "loc")
 public class Location implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @Field(type = FieldType.Long)
     private Long id;
@@ -28,8 +29,17 @@ public class Location implements Serializable {
         return id;
     }
 
+    public Location setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
     public GeoPoint getGeoPoint() {
         return geoPoint;
     }
 
+    public Location setGeoPoint(GeoPoint geoPoint) {
+        this.geoPoint = geoPoint;
+        return this;
+    }
 }
