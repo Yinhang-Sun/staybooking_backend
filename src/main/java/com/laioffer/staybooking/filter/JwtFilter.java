@@ -22,7 +22,6 @@ import java.util.List;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
-
     private final String HEADER = "Authorization";
     private final String PREFIX = "Bearer ";
     private AuthorityRepository authorityRepository;
@@ -33,8 +32,11 @@ public class JwtFilter extends OncePerRequestFilter {
         this.authorityRepository = authorityRepository;
         this.jwtUtil = jwtUtil;
     }
+
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest httpServletRequest,
+                                    HttpServletResponse httpServletResponse, FilterChain filterChain)
+        throws ServletException, IOException {
         final String authorizationHeader = httpServletRequest.getHeader(HEADER);
 
         String jwt = null;
@@ -46,10 +48,12 @@ public class JwtFilter extends OncePerRequestFilter {
             String username = jwtUtil.extractUsername(jwt);
             Authority authority = authorityRepository.findById(username).orElse(null);
             if(authority != null) {
-                List<GrantedAuthority> grantedAuthories = Arrays.asList(new GrantedAuthority[] {new SimpleGrantedAuthority(authority.getAuthority())});
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        username, null, grantedAuthories);
-                usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
+                List<GrantedAuthority> grantedAuthorities =
+                        Arrays.asList(new GrantedAuthority[] {new SimpleGrantedAuthority(authority.getAuthority())});
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                        new UsernamePasswordAuthenticationToken(username, null, grantedAuthorities);
+                usernamePasswordAuthenticationToken.setDetails(
+                        new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
