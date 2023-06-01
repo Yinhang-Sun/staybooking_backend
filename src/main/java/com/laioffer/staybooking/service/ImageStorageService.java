@@ -6,6 +6,7 @@ import com.google.cloud.storage.Storage;
 import com.laioffer.staybooking.exception.GCSUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.UUID;
 
+@Service
 public class ImageStorageService {
     @Value("${gcs.bucket}")
     private String bucketName;
@@ -26,7 +28,7 @@ public class ImageStorageService {
 
     public String save(MultipartFile file) throws GCSUploadException {
         String filename = UUID.randomUUID().toString();
-        BlobInfo blobInfo = nulll;
+        BlobInfo blobInfo = null;
         try {
             blobInfo = storage.createFrom(
                     BlobInfo
