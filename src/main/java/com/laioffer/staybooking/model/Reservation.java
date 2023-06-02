@@ -1,17 +1,33 @@
 package com.laioffer.staybooking.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "reservation")
+@JsonDeserialize(builder = Reservation.Builder.class)
 public class Reservation {
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @JsonProperty("checkin_date")
     private LocalDate checkinDate;
 
+    @JsonProperty("checkout_date")
     private LocalDate checkoutDate;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User guest;
 
+    @ManyToOne
+    @JoinColumn(name = "stay_id")
     private Stay stay;
 
     public Reservation() {}
@@ -50,10 +66,19 @@ public class Reservation {
     }
 
     public static class Builder {
+        @JsonProperty("id")
         private Long id;
+
+        @JsonProperty("checkin_date")
         private LocalDate checkinDate;
+
+        @JsonProperty("checkout_date")
         private LocalDate checkoutDate;
+
+        @JsonProperty("guest")
         private User guest;
+
+        @JsonProperty("stay")
         private Stay stay;
 
         public Builder setId(Long id) {
